@@ -17,10 +17,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomOauth2UserServcie customOauth2UserService;
 
+    private final CorsConfig corsConfig;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // 세션 사용 안함 설정
+        http.addFilter(corsConfig.corsFilter());
         http.authorizeRequests()
                 .antMatchers("/user/**").access("hasRole('ROLE_USER')")
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
