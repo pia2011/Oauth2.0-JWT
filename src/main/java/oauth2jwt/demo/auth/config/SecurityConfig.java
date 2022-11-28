@@ -22,6 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // 세션 사용 안함 설정
+        http.httpBasic().disable(); // Basic 인증 방식 사용 안함 설정
         http.addFilter(corsConfig.corsFilter());
         http.authorizeRequests()
                 .antMatchers("/user/**").access("hasRole('ROLE_USER')")
