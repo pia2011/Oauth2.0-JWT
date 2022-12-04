@@ -1,6 +1,7 @@
 package oauth2jwt.demo.auth.oauth;
 
 import oauth2jwt.demo.user.domain.User;
+import oauth2jwt.demo.user.enumerate.RoleType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -22,6 +23,11 @@ public class UserPrincipal implements UserDetails, OAuth2User {
         this.user = user;
         this.attributes = attributes;
     }
+
+    public Long getId(){
+        return user.getId();
+    }
+    public RoleType getRole(){return user.getRoleType();}
 
     @Override
     public String getName() {
