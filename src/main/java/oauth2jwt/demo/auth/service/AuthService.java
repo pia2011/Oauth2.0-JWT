@@ -32,9 +32,8 @@ public class AuthService {
             AuthToken refreshAuthToken = authTokenProvider.convertToken(refreshToken.getToken());
             /**
              * TODO : 문제점 고치기
-             * 1. 이전 AccessToken 도 허용해버림
-             * 2. 로직 개선
-             * 3. RoleType null
+             * 1. 로직 개선
+             * 2. RoleType
              */
             String role = refreshAuthToken.getTokenClaim().get("role").toString();
 
